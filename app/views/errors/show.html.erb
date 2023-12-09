@@ -1,6 +1,7 @@
 <h1>id: <%= @error.id %> のメッセージ詳細ページ</h1>
 
-<p><%= @error.content %></p>
+<p>エラータイトル<%= @error.content %></p>
+<p>エラーメッセージ: <%= @error.message %></p>
 
 <%= link_to '一覧に戻る', errors_path %>
 <%= link_to '編集する', edit_error_path(@error) %>

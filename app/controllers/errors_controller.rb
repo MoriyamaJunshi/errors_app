@@ -53,6 +53,6 @@ class ErrorsController < ApplicationController
   end
   
   def error_params
-    params.require(:error).permit(:content)
+    params.require(:error).permit(:content, :message)
   end
 end

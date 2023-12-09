@@ -2,7 +2,7 @@
 
 <ul>
   <% @errors.each do |error| %>
-    <li><%= link_to error.id, error %> : <% error.content %></li>
+    <li><%= link_to error.id, error %> : <% error.content %> &gt; <%= error.message %></li>
   <% end %>
 </ul>
 
