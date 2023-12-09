@@ -5,5 +5,6 @@
     <li><%= link_to error.id, error %> : <% error.content %> &gt; <%= error.message %></li>
   <% end %>
 </ul>
+<%== pagy_nav(@pagy) %>
 
 <%= link_to '新規エラーメッセージの登録', new_error_path %>

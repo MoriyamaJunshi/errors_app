@@ -2,7 +2,7 @@ class ErrorsController < ApplicationController
   before_action :set_error, only: [:show, :edit, :update, :destroy]
   
   def index
-    @errors = Error.all
+    @pagy, @errors = pagy(Error.all)
   end
   
   def show
