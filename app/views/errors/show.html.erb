@@ -1,8 +1,19 @@
 <h1>id: <%= @error.id %> のメッセージ詳細ページ</h1>
 
-<p>エラータイトル<%= @error.content %></p>
-<p>エラーメッセージ: <%= @error.message %></p>
+<table class="table table-bordered">
+  <tr>
+    <th>id</th>
+    <td><%= @error.id %></td>
+  </tr>
+  <tr>
+    <th>エラータイトル</th>
+    <td><%= @error.title %></td>
+  </tr>
+  <tr>
+    <th>エラーメッセージ</th>
+    <td><%= @error.content %></td>
+  </tr>
+</table>
 
-<%= link_to '一覧に戻る', errors_path %>
-<%= link_to '編集する', edit_error_path(@error) %>
-<%= link_to '削除する', @error, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+<%= link_to '編集する', edit_error_path(@error), class: 'btn btn-light' %>
+<%= link_to '削除する', @error, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger' %>

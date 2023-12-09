@@ -1,10 +1,27 @@
-<h1>エラー一覧</h1>
+<h1>メッセージ一覧</h1>
 
-<ul>
-  <% @errors.each do |error| %>
-    <li><%= link_to error.id, error %> : <% error.content %> &gt; <%= error.message %></li>
-  <% end %>
-</ul>
-<%== pagy_nav(@pagy) %>
+<% if @errors.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>エラータイトル</th>
+        <th>エラーメッセージ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @errors.each do |error| %>
+        <tr>
+          <td><%= link_to error.id, error %></td>
+          <td><%= error.content%></td>
+          <td><%= error.message %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
+<% end %>
 
-<%= link_to '新規エラーメッセージの登録', new_error_path %>
+<%= link_to 'エラーメッセージの登録', new_error_path, class: "btn btn-primary" %>
