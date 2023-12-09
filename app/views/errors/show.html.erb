@@ -1,0 +1,7 @@
+<h1>id: <%= @error.id %> のメッセージ詳細ページ</h1>
+
+<p><%= @error.content %></p>
+
+<%= link_to '一覧に戻る', errors_path %>
+<%= link_to '編集する', edit_error_path(@error) %>
+<%= link_to '削除する', @error, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
