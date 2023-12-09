@@ -1,10 +1,5 @@
 <h1>id: <%= @error.id %> のメッセージ編集ページ</h1>
 
-<%= form_with(model: @error) do |f| %>
-  <%= f.label :content, 'メッセージ' %>
-  <%= f.text_field :content %>
-
-  <%= f.submit '登録' %>
-<% end %>
+<%= render 'form', error: @error %>
 
 <%= link_to '戻る', errors_path %>
