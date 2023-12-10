@@ -1,0 +1,10 @@
+<% if logged_in? %>
+  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+<% else %>
+  <div class="bg-danger p-3 p-sm-5 my-4 rounded" backgroud-color = "">
+    <div class="text-center text-white">
+      <h1>Welcome to ErrorsApp</h1>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
+<% end %>

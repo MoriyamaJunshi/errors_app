@@ -18,7 +18,7 @@
 
       <div class="mb-3">
         <%= f.label :message, 'エラーメッセージ' %>
-        <%= f.text_field :message, class: 'form-control' %>
+        <%= f.text_area :message, rows: 6, class: 'form-control' %>
       </div>
 
       <%= f.submit '登録', class: 'btn btn-primary' %>

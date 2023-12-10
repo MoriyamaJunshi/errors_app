@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  root to: 'errors#index'
+  root to: 'toppages#index'
 
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  get 'logout', to: 'sessions#destroy'
+  
   resources :errors
+  get 'signup', to: 'users#new'
+  resources :users, only: [:create]
 end
