@@ -45,6 +45,16 @@ class ErrorsController < ApplicationController
     redirect_to errors_url
   end
 
+  def search
+    search_word = params[:word]
+    @error = Error.where("content LIKE ?", "%#{search_word}%")
+    if @errors.count > 0
+      flash.now[:notice] = "#{@errors.cont}件のエラーが見つかりました。"
+    else
+      flash.now[:alert] = "#エラーが見つかりませんでした。"
+    end
+  end
+  
   private
 
   # Strong Parameter

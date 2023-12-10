@@ -1,5 +1,14 @@
 <h1>エラーメッセージ一覧</h1>
-
+<div class="wrapper">
+  <div class="container flex-start">
+    <div class= "col-box-1">
+      <%= form_with url: search_path, local: false, method: :get do |f| %>
+        <% f.text_field :word, placeholder: "キーワードを入力", class: "form-box" %>
+        <%= f.submit "検索", class: "btn" %>
+      <% end %>
+    </div>  
+  </div>
+</div>
 <% if @errors.any? %>
   <table class="table table-striped">
     <thead>
