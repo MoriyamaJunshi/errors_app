@@ -1,6 +1,7 @@
 class ErrorsController < ApplicationController
   before_action :set_error, only: [:show, :edit, :update, :destroy]
   before_action :require_user_logged_in, only: [:index, :show]
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
   
   def index
     @pagy, @errors = pagy(Error.all)
@@ -15,6 +16,7 @@ class ErrorsController < ApplicationController
   
   def create
     @error = Error.new(error_params)
+    @error.user = current_user
     
     if @error.save
       flash[:success] = 'エラーメッセージが正常に登録されました'
@@ -47,13 +49,16 @@ class ErrorsController < ApplicationController
 
   def search
     search_word = params[:word]
-    @error = Error.where("content LIKE ?", "%#{search_word}%")
-    if @errors.count > 0
-      flash.now[:notice] = "#{@errors.cont}件のエラーが見つかりました。"
+    @pagy, @errors = pagy(Error.where("content LIKE ?", "%#{search_word}%"))
+    if @errors.any?
+      flash.now[:notice] = "#{@errors.count}件のエラーが見つかりました。"
     else
-      flash.now[:alert] = "#エラーが見つかりませんでした。"
+      flash.now[:alert] = "エラーが見つかりませんでした。"
     end
+    
+    render 'index'
   end
+
   
   private
 
@@ -65,5 +70,12 @@ class ErrorsController < ApplicationController
   
   def error_params
     params.require(:error).permit(:content, :message)
+  end
+  
+  def correct_user
+    @error = current_user.errors.find_by(id: params[:id])
+    unless @error
+      redirect_to root_url
+    end
   end
 end
