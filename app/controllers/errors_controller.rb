@@ -1,5 +1,4 @@
 class ErrorsController < ApplicationController
-  before_action :set_error, only: [:show, :edit, :update, :destroy]
   before_action :require_user_logged_in, only: [:index, :show]
   before_action :correct_user, only: [:show, :edit, :update, :destroy]
   
@@ -64,16 +63,12 @@ class ErrorsController < ApplicationController
 
   # Strong Parameter
   
-  def set_error
-    @error = Error.find(params[:id])
-  end
-  
   def error_params
     params.require(:error).permit(:content, :message)
   end
   
   def correct_user
-    @error = current_user.errors.find_by(id: params[:id])
+    @error = current_user.user_errors.find_by(id: params[:id])
     unless @error
       redirect_to root_url
     end
